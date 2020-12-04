@@ -1,0 +1,17 @@
+{
+  "name": "BotDiscordCybertBit",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/BotStart.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@discordjs/opus": "^0.3.3",
+    "discord.js": "^12.5.1",
+    "ffmpeg-static": "^4.2.7",
+    "nodemon": "^2.0.6",
+    "yt-search": "^2.5.1",
+    "ytdl-core": "^4.1.2"
+  }
+}
