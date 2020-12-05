@@ -1,9 +1,9 @@
 {
-  "name": "BotDiscordCybertBit",
+  "name": "samuel-bot",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "/src/server.js",
   "scripts": {
-    "start": "nodemon ./src/BotStart.js"
+    "start": "nodemon ./src/server.js"
   },
   "license": "MIT",
   "dependencies": {

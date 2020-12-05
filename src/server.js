@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { execute } = require('./commands/commands')
+const { execute } = require('./commands')
 const { token } = require('../bot.config.json')
 const { prefix } = require('../config.json')
 const client = new Discord.Client();
@@ -23,4 +23,5 @@ client.on('message', msg => {
 client.on('disconnect', () => {
 
 })
+
 client.login(token);

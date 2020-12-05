@@ -9,6 +9,8 @@ const help = ({ commands, msg }) => {
       .setDescription(commandsList)
 
     msg.channel.send(embed)
+
+    return true
 }
 
 module.exports = help
