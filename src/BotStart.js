@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const Commands = require('./commands/commands')
+const { execute } = require('./commands/commands')
 const { token } = require('../bot.config.json')
 const { prefix } = require('../config.json')
 const client = new Discord.Client();
@@ -12,7 +12,7 @@ client.on('ready', () => {
 client.on('message', msg => {
   if (!msg.content.startsWith(prefix)) return;
   const command = msg.content.split(' ')[1]
-  const commandReturn = Commands.execute(command, msg)
+  const commandReturn = execute({ command, msg })
 
   if(!commandReturn) {
     msg.channel.send(`O comando ${command} não existe!`)
