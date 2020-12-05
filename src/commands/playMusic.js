@@ -7,7 +7,7 @@ const start = (msg, song) => {
   if (!song) {
     serverQueue.voiceChannel.leave();
     queue.delete(guild.id);
-    return;
+    return true
   }
 
   const dispatcher = serverQueue.connection
@@ -76,4 +76,5 @@ exports.play = async (msg) => {
       serverQueue.songs.push(videos[0]);
       return msg.channel.send(`${videos[0].title} foi adicionado a fila!`);
   }
+  return true
 }

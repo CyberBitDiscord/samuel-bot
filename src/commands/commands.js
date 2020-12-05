@@ -4,10 +4,10 @@ const Help = require('./help');
 const { play, skip, stop } = require('./playMusic')
 module.exports = (function() {
     const commands =  {
-        "Help": function(msg) {Help(commands, msg)},
-        "Userinfo": userInfo,
-        "Serverinfo": function() {console.log("serverinfo")},
-        "Cargos": function() {console.log("cargos")},
+        "help": function(msg) {Help(commands, msg)},
+        "userinfo": userInfo,
+        "serverinfo": function() {console.log("serverinfo")},
+        "cargos": function() {console.log("cargos")},
         "p": play,
         "skip": skip,
         "stop": stop
