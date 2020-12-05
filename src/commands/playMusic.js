@@ -18,17 +18,17 @@ const start = (msg, song) => {
     })
     .on("error", error => console.error(error));
   dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-  serverQueue.textChannel.send(`Start playing: **${song.title}**`);
+  serverQueue.textChannel.send(`Tocando: **${song.title}**`);
 }
 
 exports.skip = msg => {
   const serverQueue = queue.get(msg.guild.id);
   if (!msg.member.voice.channel)
     return msg.channel.send(
-      "You have to be in a voice channel to stop the music!"
+      "Você precisa estar no mesmo cannal do bot para pular a música!"
     );
   if (!serverQueue)
-    return msg.channel.send("There is no song that I could skip!");
+    return msg.channel.send("Sem m~usicas na fila!");
   serverQueue.connection.dispatcher.end();
 }
 
@@ -36,7 +36,7 @@ exports.stop = msg => {
   const serverQueue = queue.get(msg.guild.id);
   if (!msg.member.voice.channel)
     return msg.channel.send(
-      "You have to be in a voice channel to stop the music!"
+      "Você precisa estar no mesmo canal do bot para parar a(s) música(s)!"
     );
   serverQueue.songs = [];
   serverQueue.connection.dispatcher.end();
