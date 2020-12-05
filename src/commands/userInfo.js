@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 const moment = require('moment')
 require('moment-precise-range-plugin')
 
-const userInfo = async (msg) => {
+const userInfo = async ({ msg }) => {
     const { author: { id, username, discriminator, createdTimestamp }, guild:{ joinedTimestamp } } = msg
 
     const user = msg.author

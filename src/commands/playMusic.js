@@ -21,7 +21,7 @@ const start = (msg, song) => {
   serverQueue.textChannel.send(`Tocando: **${song.title}**`);
 }
 
-exports.skip = msg => {
+exports.skip = ({ msg }) => {
   const serverQueue = queue.get(msg.guild.id);
   if (!msg.member.voice.channel)
     return msg.channel.send(
@@ -32,7 +32,7 @@ exports.skip = msg => {
   serverQueue.connection.dispatcher.end();
 }
 
-exports.stop = msg => {
+exports.stop = ({ msg }) => {
   const serverQueue = queue.get(msg.guild.id);
   if (!msg.member.voice.channel)
     return msg.channel.send(
@@ -42,7 +42,7 @@ exports.stop = msg => {
   serverQueue.connection.dispatcher.end();
 }
 
-exports.play = async (msg) => {
+exports.play = async ({ msg }) => {
   const serverQueue = queue.get(msg.guild.id);
   const query = msg.content.split(' ').slice(2).join(' ')
   const data = await yts(query)
