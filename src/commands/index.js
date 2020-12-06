@@ -3,6 +3,7 @@ const userInfo = require('./userInfo')
 const serverInfo = require('./serverInfo')
 const Help = require('./help');
 const { play, skip, stop } = require('./playMusic')
+const { showRoles, register } = require('./register')
 
 const commands = {
     "help": {
@@ -17,9 +18,9 @@ const commands = {
         action: serverInfo,
         description: "+san serverinfo: exibe as informações do servidor"
     },
-    "cargos": {
-        action: () => false,
-        description: "+san cargos: exibe as informações de cargo do usuário"
+    "registrar": {
+        action: showRoles,
+        description: "+san registrar @user: abre um painel para dar cargos ao usuário selecionado"
     },
     "p": {
         action: play,
@@ -35,8 +36,15 @@ const commands = {
     }
 }
 
+const replys = {
+    "Responda com o número para dar o cargo:": {
+        action: register,
+        description: "Adiciona a role no usuário"
+    },
+}
+
 exports.execute = args => {
-   const commandToBeExecuted = commands[args.command]
+   const commandToBeExecuted = commands[args.command] || replys[args.command]
 
    if(!commandToBeExecuted) return false
    

@@ -23,7 +23,7 @@ function serverInfo({ msg }) {
     .setTitle("Samuel hackiou essas infos :eyes: ")
     .addFields(
         { name: ':computer: ID', value: `${msg.guild.id}`, inline: true },
-        { name: ':crown: Dono', value: `**${msg.guild.owner.displayName}**`, inline: true },
+        { name: ':crown: Dono', value: `**${msg.guild.owner ? msg.guild.owner : 'Não econtrei :('}**`, inline: true },
         { name: ':earth_americas: Região', value: `${msg.guild.region}`, inline: true },
         { name: `:speech_balloon: Canais (${textChannelNumber + voiceChannelNumber})`, value: `:pencil: **Texto**: ${textChannelNumber} \n :speaking_head: **Voz**: ${voiceChannelNumber} \n`, inline: true },
         { name: ':date: Criado em', value: `${dateString}`, inline: true },
@@ -31,6 +31,8 @@ function serverInfo({ msg }) {
     )
 
     msg.channel.send(embed)
+
+    return true
 }
 
 module.exports = serverInfo
