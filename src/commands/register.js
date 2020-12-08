@@ -20,9 +20,9 @@ exports.showRoles = ({ msg }) => {
     if(!registerRole) {
         msg.channel.send(`O cargo de Registrador ainda não existe`)
         return true
-    }
+    }   
 
-    if(!author._roles.find(r => r === registerRole[0][0])) return 401
+    if(!author._roles.find(r => r === registerRole[0])) return 401
 
     const description = createDescription(roles, user)
 
