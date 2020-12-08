@@ -36,6 +36,8 @@ const userInfo = async ({ msg }) => {
     .setThumbnail(profileImage)
 
     msg.channel.send(embed)
+
+    return true
 }
 
 module.exports = userInfo
