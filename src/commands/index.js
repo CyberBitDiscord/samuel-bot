@@ -1,6 +1,7 @@
 
+const meme = require('./meme')
 const userInfo = require('./userInfo')
-const serverInfo = require('./serverInfo')
+const serverInfo = require('./serverinfo')
 const Help = require('./help');
 const { play, skip, stop } = require('./playMusic')
 const { showRoles, register } = require('./register')
@@ -38,7 +39,11 @@ const commands = {
     "stop": {
         action: stop,
         description: "+san stop: para de tocar todas as músicas"
-    }
+    },
+    "meme": {
+        action: meme,
+        description: "+san meme: Gera memes, para maiores informações sobre os templates utilize o comando"
+    },
 }
 const replys = {
     "Responda com o número para dar o cargo:": {

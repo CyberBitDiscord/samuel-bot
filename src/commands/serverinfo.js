@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-function serverInfo({ msg }) {
+const serverInfo = ({ msg }) => {
     const date = new Date(msg.guild.createdAt)
     const createdAt = new Date(msg.guild.createdTimestamp)
     const month = date.toLocaleDateString('en-US', {dateStyle: 'medium'}).split(' ')[0]
