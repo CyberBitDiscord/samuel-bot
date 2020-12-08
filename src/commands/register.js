@@ -1,6 +1,7 @@
 
 const Discord = require('discord.js');
 
+const filterAdm = roles => roles.filter(r => !new Discord.BitField(r[1].permissions.bitfield).has(8) && r[1].name !== '@everyone')
 
 const createDescription = (roles, user) => `
 ${roles.map((r, i) => `${i}: ${r[1].name} \n`)}
@@ -10,12 +11,13 @@ ${user}
 const getRoles = msg => Array.from(msg.guild.roles.cache)
 
 exports.showRoles = ({ msg }) => {
-    const roles = getRoles(msg)
+    const roles = filterAdm(getRoles(msg))
     const userId = msg.content.split(' ')[2]
     const user = msg.guild.members.cache.get(userId.replace(/[^0-9]/gi, ''))
+    const author = msg.guild.members.cache.get(msg.author.id)
     const registerRole = roles.filter(r => r[1].name === 'Registrador')
-    
-    if(!user._roles.find(r => r === registerRole[0][0])) return 401
+
+    if(!author._roles.find(r => r === registerRole[0][0])) return 401
 
     const description = createDescription(roles, user)
 
@@ -29,7 +31,7 @@ exports.showRoles = ({ msg }) => {
 }
 
 exports.register = ({ msg, msgRef }) => {
-    const roles = getRoles(msg)
+    const roles = filterAdm(getRoles(msg))
     const role = roles[msg.content]
     if(!role) return false
 

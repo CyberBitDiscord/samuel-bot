@@ -5,6 +5,7 @@ const serverInfo = require('./serverinfo')
 const Help = require('./help');
 const { play, skip, stop } = require('./playMusic')
 const { showRoles, register } = require('./register')
+const { playGame, evenOrODDResult } = require('./games')
 
 const commands = {
     "help": {
@@ -21,6 +22,10 @@ const commands = {
     },
     "registrar": {
         action: showRoles,
+        description: "+san registrar @user: abre um painel para dar cargos ao usuário selecionado"
+    },
+    "jogar": {
+        action: playGame,
         description: "+san registrar @user: abre um painel para dar cargos ao usuário selecionado"
     },
     "p": {
@@ -40,12 +45,15 @@ const commands = {
         description: "+san meme: Gera memes, para maiores informações sobre os templates utilize o comando"
     },
 }
-
 const replys = {
     "Responda com o número para dar o cargo:": {
         action: register,
         description: "Adiciona a role no usuário"
     },
+    "Jogo par ou ímpar:": {
+        action: evenOrODDResult,
+        description: "Resultado do par ou impar"
+    }
 }
 
 exports.execute = args => {

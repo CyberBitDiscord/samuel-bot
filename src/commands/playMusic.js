@@ -1,12 +1,13 @@
 const ytdl = require('ytdl-core')
 const yts = require('yt-search')
+
 const queue = new Map();
 
 const start = (msg, song) => {
   const serverQueue = queue.get(msg.guild.id);
   if (!song) {
     serverQueue.voiceChannel.leave();
-    queue.delete(guild.id);
+    queue.delete(msg.guild.id);
     return true
   }
 
@@ -19,6 +20,8 @@ const start = (msg, song) => {
     .on("error", error => console.error(error));
   dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
   serverQueue.textChannel.send(`Tocando: **${song.title}**`);
+
+  return true
 }
 
 exports.skip = ({ msg }) => {
@@ -28,8 +31,10 @@ exports.skip = ({ msg }) => {
       "Você precisa estar no mesmo cannal do bot para pular a música!"
     );
   if (!serverQueue)
-    return msg.channel.send("Sem m~usicas na fila!");
+    return msg.channel.send("Sem músicas na fila!");
   serverQueue.connection.dispatcher.end();
+
+  return true
 }
 
 exports.stop = ({ msg }) => {
@@ -40,6 +45,8 @@ exports.stop = ({ msg }) => {
     );
   serverQueue.songs = [];
   serverQueue.connection.dispatcher.end();
+
+  return true
 }
 
 exports.play = async ({ msg }) => {
@@ -49,6 +56,7 @@ exports.play = async ({ msg }) => {
   const videos = data.videos
 
   const voiceChannel = msg.member.voice.channel;
+
   if (!serverQueue) {
       const queueContruct = {
         textChannel: msg.channel,
