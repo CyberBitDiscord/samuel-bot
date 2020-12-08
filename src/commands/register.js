@@ -38,6 +38,11 @@ exports.showRoles = ({ msg }) => {
 exports.register = ({ msg, msgRef }) => {
     const roles = filterAdm(getRoles(msg))
     const role = roles[msg.content]
+
+    const registerRole = roles.find(r => r[1].name === 'Registrador')
+    
+    if(!author._roles.find(r => r === registerRole[0])) return 401
+
     if(!role) return false
 
     const user = msg.guild.members.cache.get(msg.author.id)
