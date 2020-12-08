@@ -75,6 +75,8 @@ exports.playGame = ({ msg }) => {
 
     if(game === 'parouimpar') {
         evenOrODD(msg)
+    } else {
+        game.channel.send(`Jogo não encontrado`)
     }
 
     return true
