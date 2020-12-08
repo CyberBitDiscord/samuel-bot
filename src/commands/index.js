@@ -37,8 +37,8 @@ const commands = {
     },
     "meme": {
         action: meme,
-        description: "Em test"
-    }
+        description: "+san meme: Gera memes, para maiores informações sobre os templates utilize o comando"
+    },
 }
 
 const replys = {

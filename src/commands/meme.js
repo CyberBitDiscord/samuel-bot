@@ -16,7 +16,6 @@ const memeSctruct = {
                 x: 0,
                 y: 310,
                 alignmentX: jimp.HORIZONTAL_ALIGN_CENTER,
-                alignmentY: jimp.VERTICAL_ALIGN_BOTTOM,
             },
         ]
 
@@ -39,10 +38,63 @@ const memeSctruct = {
        ]
     },
     'Running Away Balloon' : {
-        numberOfText: 4
+        numberOfText: 5,
+        font: jimp.FONT_SANS_32_BLACK,
+        textBlockWidth: 160,
+        textsConfig: [
+            {
+               x: 30,
+               y: 255,
+               alignmentX: jimp.HORIZONTAL_ALIGN_LEFT
+           },
+            {
+               x: 300,
+               y: 132,
+               alignmentX: jimp.HORIZONTAL_ALIGN_LEFT
+           },
+            {
+               x: 6,
+               y: 543,
+               alignmentX: jimp.HORIZONTAL_ALIGN_LEFT
+           },
+           {
+                x: 175,
+                y: 569,
+                alignmentX: jimp.HORIZONTAL_ALIGN_LEFT
+            }
+            , {
+                x: 387,
+                y: 452,
+                alignmentX: jimp.HORIZONTAL_ALIGN_LEFT
+            }
+       ]
     },
     'Tier Expanding Brain' : {
-        numberOfText: 4
+        numberOfText: 4,
+        font: jimp.FONT_SANS_32_BLACK,
+        textBlockWidth: 232,
+        textsConfig: [
+            {
+               x: 13,
+               y: 11,
+               alignmentX: jimp.HORIZONTAL_ALIGN_LEFT
+           },
+            {
+               x: 10,
+               y: 185,
+               alignmentX: jimp.HORIZONTAL_ALIGN_LEFT
+           },
+            {
+               x: 9,
+               y: 365,
+               alignmentX: jimp.HORIZONTAL_ALIGN_LEFT
+           },
+           {
+                x: 12,
+                y: 534,
+                alignmentX: jimp.HORIZONTAL_ALIGN_LEFT
+            }
+        ]
     },
 }
 
@@ -54,7 +106,7 @@ const memeGenerate = async ({ msg }) => {
    if(memeTemplate.length === 0) return msg.channel.send(memeHelp())
 
    const memeTexts = textProcess(msg.content)
-    console.log(memeTexts)
+
    if(memeTexts.length !== memeSctruct[memeTemplate].numberOfText) return msg.channel.send(memeHelp())
 
    const img = await readyImage(memeTemplate[0].toLocaleLowerCase().replace(/\s/g, ''))
@@ -65,13 +117,13 @@ const memeGenerate = async ({ msg }) => {
    }).then(async img => {
        const imgBuffer = await img.getBufferAsync(img.getMIME())
        const attachment = new Discord.MessageAttachment(imgBuffer);
-       msg.channel.send("Samuel meme", attachment)   })
-
+       msg.channel.send("Samuel meme", attachment)
+    })
 }
 
 const textProcess = (text) => {
     const textBetweenParentheses = text.match(/(\[)(.*)(\])/)[2]
-    const memeTextsProcessed = textBetweenParentheses.replace(/\s/, '').match(/(\")(.*)(\")/)[0]
+    const memeTextsProcessed = textBetweenParentheses.match(/(\")(.*)(\")/)[0]
     const texts = memeTextsProcessed.split('"').filter(value => value.replace(/[|&;$%@"<>()+,]/g, "").length > 0)
     return texts
 }
@@ -104,7 +156,7 @@ const memeHelp = () => {
     Object.keys(memeSctruct).map(key => {
         message += `${key} com ${memeSctruct[key].numberOfText} campos de texto disponiveis \n`
     })
-    message += '**Formato do comando: Nome do template ["Texto1", "Texto2", ...]**'
+    message += '**Formato do comando: Nome do template ["Texto1" "Texto2" ...]**'
     return message
 }
 
