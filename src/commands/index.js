@@ -25,19 +25,19 @@ const commands = {
     },
     "jogar": {
         action: playGame,
-        description: "+san registrar @user: abre um painel para dar cargos ao usuário selecionado"
+        description: "+san jogar nome do jogo: inicia um jogo. Jogos atuais: parouimpar"
     },
     "p": {
         action: play,
-        description: "+san cargos: exibe as informações de cargo do usuário"
+        description: "+san p nomedamusica: toca uma música com a melhor pesquisa para aquele nome"
     },
     "skip": {
         action: skip,
-        description: "+san cargos: exibe as informações de cargo do usuário"
+        description: "+san skip: pula a música tocando atualmente"
     } ,
     "stop": {
         action: stop,
-        description: "+san cargos: exibe as informações de cargo do usuário"
+        description: "+san stop: para de tocar todas as músicas"
     }
 }
 const replys = {

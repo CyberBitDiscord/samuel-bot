@@ -23,16 +23,18 @@ client.on('message', async msg => {
   } else if(msg.reference) {
     const msgRef = await msg.channel.messages.fetch(msg.reference.messageID)
 
-    if(!msgRef.author === 'Samuel Bot') return
-    const command = msgRef.embeds[0].title
+    if(msgRef.author === 'Samuel Bot') {
+      const command = msgRef.embeds[0].title
 
-    const commandReturn = execute({ command, msg, msgRef})
-  
-    if(!commandReturn) {
-      msg.channel.send(`Não entendi a resposta!`)
-    } else if(commandReturn === 403) {
-      msg.channel.send(`Você não tem permissão para usar esse comando!`)
+      const commandReturn = execute({ command, msg, msgRef})
+    
+      if(!commandReturn) {
+        msg.channel.send(`Não entendi a resposta!`)
+      } else if(commandReturn === 403) {
+        msg.channel.send(`Você não tem permissão para usar esse comando!`)
+      }
     }
+
   }
 
   return

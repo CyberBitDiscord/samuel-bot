@@ -3,7 +3,10 @@ const moment = require('moment')
 require('moment-precise-range-plugin')
 
 const userInfo = async ({ msg }) => {
-    const { author: { id, username, discriminator, createdTimestamp }, guild:{ joinedTimestamp } } = msg
+    const author = msg.guild.members.cache.get(msg.author.id)
+
+    const { user: { id, username, discriminator }, joinedTimestamp } = author
+    const { createdTimestamp } = msg.author
 
     const user = msg.author
     const profileImage = user.avatarURL()
@@ -22,7 +25,6 @@ const userInfo = async ({ msg }) => {
     let joinedAt = joinedAtDiff.days ?  `${joinedAtDiff.days} dia${joinedAtDiff.days > 1 ? 's' : '' }` : ''
     joinedAt +=  joinedAtDiff.hours  ? ` ${ joinedAtDiff.hours} hora${ joinedAtDiff.hours > 1 ? 's' : '' }` : ''
     joinedAt +=  joinedAtDiff.minutes  ? ` ${ joinedAtDiff.minutes} minuto${ joinedAtDiff.minutes > 1 ? 's' : '' }` : ''
-
 
     const embed = new Discord.MessageEmbed()
     .setColor("#32CD32")
