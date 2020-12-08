@@ -16,6 +16,11 @@ exports.showRoles = ({ msg }) => {
     const user = msg.guild.members.cache.get(userId.replace(/[^0-9]/gi, ''))
     const author = msg.guild.members.cache.get(msg.author.id)
     const registerRole = roles.filter(r => r[1].name === 'Registrador')
+    console.log(registerRole)
+    if(!registerRole.lenght) {
+        msg.channel.send(`O cargo de Registrador ainda não existe`)
+        return true
+    }
 
     if(!author._roles.find(r => r === registerRole[0][0])) return 401
 
