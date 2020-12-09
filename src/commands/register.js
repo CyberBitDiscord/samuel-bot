@@ -38,6 +38,9 @@ exports.showRoles = ({ msg }) => {
 exports.register = ({ msg, msgRef }) => {
     const roles = filterAdm(getRoles(msg))
     const role = roles[msg.content]
+    const userID = msgRef.embeds[0].description.match(/\<@.*\>/gi)
+    const userIDNorm = userID[0].replace(/[^0-9]/gi, '')
+
     const author = msg.guild.members.cache.get(msg.author.id)
     
     const registerRole = roles.find(r => r[1].name === 'Registrador')
@@ -46,7 +49,7 @@ exports.register = ({ msg, msgRef }) => {
 
     if(!role) return false
 
-    const user = msg.guild.members.cache.get(msg.author.id)
+    const user = msg.guild.members.cache.get(userIDNorm)
     user.roles.add(role)
     msg.channel.send(`Adicionei o cargo ${role[1].name} para o(a) ${user.user.username}`)
 
