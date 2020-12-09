@@ -123,8 +123,8 @@ const memeGenerate = async ({ msg }) => {
 
 const textProcess = (text) => {
     const textBetweenParentheses = text.match(/(\[)(.*)(\])/)[2]
-    const memeTextsProcessed = textBetweenParentheses.match(/(\")(.*)(\")/)[0]
-    const texts = memeTextsProcessed.split('"').filter(value => value.replace(/[|&;$%@"<>()+,]/g, "").length > 0)
+    const catchWordsInQuotes = textBetweenParentheses.match(/"(.*?)"/g)
+    const texts = catchWordsInQuotes.map(value => value.replace(/"/g, ""))
     return texts
 }
 
