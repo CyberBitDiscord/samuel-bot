@@ -51,7 +51,7 @@ exports.stop = ({ msg }) => {
 
 exports.play = async ({ msg }) => {
   const serverQueue = queue.get(msg.guild.id)
-  const query = msg.content.split(' ').slice(2).join(' ')
+  const query = msg.content.split(' ').slice(1).join(' ')
 
   if(!query) return msg.channel.send(`Faltou o nome da música. \nPara usar o comando digite: -p nomedamusica`)
 

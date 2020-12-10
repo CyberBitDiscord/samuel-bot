@@ -4,13 +4,13 @@ const { play } = require('./playMusic');
 const games = new Map();
 
 const evenOrODD = msg => {
-    const user1ID = msg.content.split(' ')[3]
-    const user2ID = msg.content.split(' ')[4]
+    const user1ID = msg.content.split(' ')[2]
+    const user2ID = msg.content.split(' ')[3]
 
     if(!user1ID || !user2ID) return msg.channel.send('Está faltando o nome de algum usuário. \nPara usar o comando digite -paly parouimpar @usuario1 @usuario2 par/ímpar')
     
 
-    const choice = msg.content.split(' ')[5]
+    const choice = msg.content.split(' ')[4]
 
     if(!choice) return msg.channel.send('você precisa escolher se quer par ou ímpar, assim: -paly parouimpar @usuario1 @usuario2 par/ímpar')
 

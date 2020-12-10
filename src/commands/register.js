@@ -12,7 +12,7 @@ const getRoles = msg => Array.from(msg.guild.roles.cache)
 
 exports.showRoles = ({ msg }) => {
     const roles = filterAdm(getRoles(msg))
-    const userId = msg.content.split(' ')[2]
+    const userId = msg.content.split(' ')[1]
 
     if(!userId) return msg.channel.send('Está faltando o nome de usuário. \nPara usar o comando digite: -registrar @usuario')
 
