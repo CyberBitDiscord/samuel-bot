@@ -13,7 +13,7 @@ client.on('ready', () => {
 client.on('message', async msg => {
   try {
     if (msg.content.startsWith(prefix)) {
-      const command = msg.content.split(' ')[1]
+      const command = msg.content.split(' ')[0]
       const commandReturn = execute({ command, msg })
     
       if(!commandReturn) {
