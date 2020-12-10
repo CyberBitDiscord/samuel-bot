@@ -53,7 +53,7 @@ exports.play = async ({ msg }) => {
   const serverQueue = queue.get(msg.guild.id)
   const query = msg.content.split(' ').slice(2).join(' ')
 
-  if(!query) return msg.channel.send(`Faltou o nome da música. \nPara usar o comando digite: +san p nomedamusica`)
+  if(!query) return msg.channel.send(`Faltou o nome da música. \nPara usar o comando digite: -p nomedamusica`)
 
 
   const data = await yts(query)

@@ -8,41 +8,41 @@ const { showRoles, register } = require('./register')
 const { playGame, evenOrODDResult } = require('./games')
 
 const commands = {
-    "help": {
+    "-help": {
         action: Help,
-        description:'+san help: mostra todos os comandos disponíveis'
+        description:'-help: mostra todos os comandos disponíveis'
     },
-    "userinfo": {
+    "-userinfo": {
         action: userInfo,
-        description: "+san userinfo: exibe as informações de usuários"
+        description: "-userinfo: exibe as informações de usuários"
     },
-    "serverinfo": {
+    "-serverinfo": {
         action: serverInfo,
-        description: "+san serverinfo: exibe as informações do servidor"
+        description: "-serverinfo: exibe as informações do servidor"
     },
-    "registrar": {
+    "-registrar": {
         action: showRoles,
-        description: "+san registrar @user: abre um painel para dar cargos ao usuário selecionado"
+        description: "-registrar @user: abre um painel para dar cargos ao usuário selecionado"
     },
-    "jogar": {
+    "-jogar": {
         action: playGame,
-        description: "+san jogar nome do jogo: inicia um jogo. Jogos atuais: parouimpar"
+        description: "-jogar nome do jogo: inicia um jogo. Jogos atuais: parouimpar"
     },
-    "p": {
+    "-p": {
         action: play,
-        description: "+san p nomedamusica: toca uma música com a melhor pesquisa para aquele nome"
+        description: "-p nomedamusica: toca uma música com a melhor pesquisa para aquele nome"
     },
-    "skip": {
+    "-skip": {
         action: skip,
-        description: "+san skip: pula a música tocando atualmente"
+        description: "-skip: pula a música tocando atualmente"
     } ,
-    "stop": {
+    "-stop": {
         action: stop,
-        description: "+san stop: para de tocar todas as músicas"
+        description: "-stop: para de tocar todas as músicas"
     },
-    "meme": {
+    "-meme": {
         action: meme,
-        description: "+san meme: Gera memes, para maiores informações sobre os templates utilize o comando"
+        description: "-meme: Gera memes, para maiores informações sobre os templates utilize o comando"
     },
 }
 const replys = {
