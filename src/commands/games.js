@@ -7,12 +7,18 @@ const evenOrODD = msg => {
     const user1ID = msg.content.split(' ')[3]
     const user2ID = msg.content.split(' ')[4]
 
+    if(!user1ID || !user2ID) return msg.channel.send('Está faltando o nome de algum usuário. \nPara usar o comando digite +san paly parouimpar @usuario1 @usuario2 par/ímpar')
+    
+
     const choice = msg.content.split(' ')[5]
+
+    if(!choice) return msg.channel.send('você precisa escolher se quer par ou ímpar, assim: +san paly parouimpar @usuario1 @usuario2 par/ímpar')
 
     const user1 = msg.guild.members.cache.get(user1ID.replace(/[^0-9]/gi, ''))
     const user2 = msg.guild.members.cache.get(user2ID.replace(/[^0-9]/gi, ''))
     
     const id = Math.random().toString(36).substr(2, 9)
+
     const game = {
         users: new Object,
         channel: msg.channel
@@ -47,6 +53,8 @@ const evenOrODD = msg => {
     
     user1.send(embed1)
     user2.send(embed2)
+
+    return true
 }
 
 exports.evenOrODDResult = ({ msg, msgRef }) => {
@@ -75,9 +83,8 @@ exports.playGame = ({ msg }) => {
 
     if(game === 'parouimpar') {
         evenOrODD(msg)
-    } else {
-        game.channel.send(`Jogo não encontrado`)
-    }
+    } else msg.channel.send(`Jogo não encontrado. \n\ndigite: +san jogar nomedojogo. \n\nJogos atuais: parouimpar`)
+   
 
     return true
 }
