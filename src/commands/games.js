@@ -79,7 +79,7 @@ exports.evenOrODDResult = ({ msg, msgRef }) => {
 }
 
 exports.playGame = ({ msg }) => {
-    const game = msg.content.split(' ')[2]
+    const game = msg.content.split(' ')[1]
 
     if(game === 'parouimpar') {
         evenOrODD(msg)

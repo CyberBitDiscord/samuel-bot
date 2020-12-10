@@ -49,4 +49,8 @@ client.on('disconnect', () => {
   ''
 })
 
+client.on('unhandledRejection', error => {
+	console.log(err)
+});
+
 client.login(token);

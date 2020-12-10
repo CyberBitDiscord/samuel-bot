@@ -7,7 +7,6 @@ exports.sendErrorToChannel = (msg, err) => {
     const errorChannel = channels.find(c => c.name === 'erros-samuel')
 
     if(!errorChannel) return
-
     
     const embed = new Discord.MessageEmbed()
     .setColor("#DC143C")
