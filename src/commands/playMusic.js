@@ -19,22 +19,19 @@ const start = (msg, song) => {
     })
     .on("error", error => console.error(error))
   dispatcher.setVolumeLogarithmic(serverQueue.volume / 5)
-  serverQueue.textChannel.send(`Tocando: **${song.title}**`)
-
-  return true
+  return serverQueue.textChannel.send(`Tocando: **${song.title}**`)
 }
 
 exports.skip = ({ msg }) => {
   const serverQueue = queue.get(msg.guild.id)
+  console.log(serverQueue)
   if (!msg.member.voice.channel)
     return msg.channel.send(
       "Você precisa estar no mesmo cannal do bot para pular a música!"
     )
-  if (!serverQueue)
-    return msg.channel.send("Sem músicas na fila!")
-  serverQueue.connection.dispatcher.end()
+  if (!serverQueue) return msg.channel.send("Sem músicas na fila!")
 
-  return true
+  return serverQueue.connection.dispatcher.end()
 }
 
 exports.stop = ({ msg }) => {
@@ -44,9 +41,8 @@ exports.stop = ({ msg }) => {
       "Você precisa estar no mesmo canal do bot para parar a(s) música(s)!"
     )
   serverQueue.songs = []
-  serverQueue.connection.dispatcher.end()
-
-  return true
+ 
+  return serverQueue.connection.dispatcher.end()
 }
 
 exports.play = async ({ msg }) => {
