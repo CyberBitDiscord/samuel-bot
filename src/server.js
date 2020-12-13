@@ -4,6 +4,13 @@ const { token } = require('../bot.config.json')
 const { prefix } = require('../config.json');
 const { sendErrorToChannel } = require('./utils/errorsLogs');
 const client = new Discord.Client();
+
+const { Guild, guilds } = require('./models/guild')
+
+require('dotenv').config()
+
+const { connectDB } = require('./configs/database')
+connectDB('testDisc')
 //Mensagem quando um boot entrar no servidor
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
