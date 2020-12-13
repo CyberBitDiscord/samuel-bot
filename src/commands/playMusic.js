@@ -24,7 +24,6 @@ const start = (msg, song) => {
 
 exports.skip = ({ msg }) => {
   const serverQueue = queue.get(msg.guild.id)
-  console.log(serverQueue)
   if (!msg.member.voice.channel)
     return msg.channel.send(
       "Você precisa estar no mesmo cannal do bot para pular a música!"
